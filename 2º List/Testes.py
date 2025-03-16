@@ -5,16 +5,16 @@ from circular import ListaCircular
 # for i in range(test):
 #     ref = listar.insere(ref,i+1)
 #     i += 1
-ref = None
+# ref = None
 
-ref = Crescente.crescente(ref,1)
-ref = Crescente.crescente(ref,5)
-ref = Crescente.crescente(ref,90)
-ref = Crescente.crescente(ref,12)
-ref = Crescente.crescente(ref,44)
-listar.imprimir(ref)
-ref = listar.remover(ref,90)
-listar.imprimir(ref)
+# ref = Crescente.crescente(ref,1)
+# ref = Crescente.crescente(ref,5)
+# ref = Crescente.crescente(ref,90)
+# ref = Crescente.crescente(ref,12)
+# ref = Crescente.crescente(ref,44)
+# listar.imprimir(ref)
+# ref = listar.remover(ref,90)
+# listar.imprimir(ref)
 #test1 = int(input("Insira o Valor que deseja Retirar: "))
 #listar.remover(ref,test1)
 #listar.imprimir(ref)
@@ -34,3 +34,7 @@ listar.imprimir(ref)
 # ref.imprimir()
 # ref.limpar()
 # ref.imprimir()
+f = ListaCircular()
+for i in [1,2,3,4,5,6,7]:
+        f.inserir(i)
+f.endereços()

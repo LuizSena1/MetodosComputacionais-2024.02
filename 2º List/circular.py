@@ -48,17 +48,19 @@ class ListaCircular:
         while(p.info != valor and p != self.head):
             ant = p
             p = p.prox
-        if p.info == valor:
+        
+        if p.info == valor: # Diferente de lista normal, essa não vai ficar None quando o loop for concluido
             
             if p.prox == p: # Isso fara a lista ficar vazia, no caso de o item a ser removido for o unico na lista.
                 self.head = None
-                return None
+                return self.head
             
             if p == self.head: # Caso o Item seja o primeiro da lista.
                 self.head = p.prox # Faz com que o primeiro valor seja eliminado, e segundo valor se torne o primeiro da lista.
-        
-        ant.prox = p.prox
-        p = None
+            else:
+                ant.prox = p.prox
+                p = None
+
         return self.head
 
     def limpar(self):
@@ -75,3 +77,40 @@ class ListaCircular:
         self.head = None # Apaga o Nó em si e faz a lista ficar Vazia.
         
         return self.head
+
+    def enderecos(self):
+
+        if self.vazio(): # Como de costume, checa se a lista esta Vazia, se tiver. Vai dar o print
+            return print("\nLista esta Vazia.")
+
+        aux = self.head
+        print("\n Imprimindo Lista Circular e endereços de memoria:")
+        while aux:
+            print(f"Elementos: {aux.info}, Endereços da Memoria:{id(aux.info)}")
+            aux = aux.prox
+
+            if aux == self.head:
+                break
+        print("")
+    
+    def duplicados(self):
+        if self.vazio():
+            return print("Lista Vazia.")
+        
+        p = self.head # Ponteiro inicial. Para definir o Nó atual.
+
+        while True:
+            aux = p # Auxiliar usado para verificar duplicados.
+
+            while aux.prox != self.head: # Percore todo a lista ate chegar no "ultimo" Nó, que estaria apontando para o self.head
+                
+                if aux.prox.info == p.info: # Checa se o há algum valor duplicado, e se encontrar
+                    aux.prox = aux.prox.prox # Ele remove o nó duplicado
+                else:
+                    aux = aux.prox # Caso não, apenas avança para o proximo nó.
+            
+            
+            if p.prox == self.head: # Checa se o Loop foi concluido.
+                break # E acaba o Loop.
+        
+            p = p.prox

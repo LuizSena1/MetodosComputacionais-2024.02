@@ -57,34 +57,22 @@ def enderecos(ref):
         print(f"Elementos : {p.info}, Endereço na Memoria: {id(p.info)}") # Exibe lado a lado os valores e seus endereços.
         p = p.prox
 
-def remove_repeated(ref):
+def duplicados(ref):
     if ref is None:
         return print("Lista esta Vazia")
+    
     p = ref # Define o ponteiro do Nó atual
     while p != None:
         ant = p # Ponteiro para o nó anterior
         aux = p.prox # Ponteiro auxiliar para proximo no.
 
         while aux != None: # Ira percorrer os items a frente com intuito de eliminar copias.
-            if aux.info == p.info:
-                ant.prox = p.prox
+            if aux.info == p.info: # If para encontrar um valor duplicado
+                ant.prox = aux.prox # Quando valor e encotnrado, ele e removido.
+            else: # Caso não seja encontrado um valor duplicado
+                ant = aux  # Apenas atualiza o ponteiro
+            aux = aux.prox # E passa para o proximo nó
 
-# def crescente(ref,valor):
-#     n_no = lista(valor)
-#     aux = ref # Serve para auxiliar na resolução. para \
+        p = p.prox  # Mesma coisa, passa para o proximo nó
 
-#     if ref == None: # Apenas para fazer que caso seja o primeiro Valor da lista, o codigo passe.
-#         n_no.prox = ref
-#         return n_no
-    
-#     while aux.prox != None and aux.prox.info < valor:
-#         aux = aux.prox
-
-#     # if ref.prox != None: # Checa se existe um No apos esse ponto.
-#     #     while ref.prox.info < valor: # Checa se o proximo no e menor que o valor.
-#     #         ref.info = ref.prox # Com o Valor sendo maior, ele continua a checagem indo de no em no ate que o Valor seja menor. 
-
-#     n_no.prox = aux.prox # N_no apota para o promximo nó
-#     aux.prox = n_no # o nó anterior aponta para o novo nó.
-#     # Essa parte serve para inserir o valor no ponto correto e colocando os numeros em suas devidas casas. 
-#     return ref
+    return ref

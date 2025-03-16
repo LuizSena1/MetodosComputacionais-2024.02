@@ -6,7 +6,8 @@ while True:
     print("2. Imprimir")
     print("3. Remover")
     print("4. Limpar")
-    print("5. Finalizar Programa")
+    print("5. Remover duplicados")
+    print("Any Key. Finaliza Programa")
 
     escolha = input("Escolha a Opção desejada: ")
     valor = 0
@@ -24,6 +25,9 @@ while True:
             
         case "4":
                 lista.limpar()
+                
+        case "5":
+                lista.duplicados()
 
         case default:
                 print("Finalizando Programa...")

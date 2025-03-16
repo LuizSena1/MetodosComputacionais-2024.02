@@ -1,7 +1,7 @@
 import listar
 def crescente(ref,valor):
     n_no = listar.lista(valor)
-    aux = ref # Serve para auxiliar na resolução. para \
+    aux = ref # Serve para auxiliar na resolução.
 
     if ref == None: # Apenas para fazer que caso seja o primeiro Valor da lista, o codigo passe.
         n_no.prox = ref
