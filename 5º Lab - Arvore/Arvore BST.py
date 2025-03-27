@@ -59,15 +59,65 @@ class Arvore():
         
         return self
     
+    def min(self):
+        if self.vazio():
+            return None
 
-root = Arvore(10)
-root.insertinfo(11)
-root.insertinfo(12)
-root.insertinfo(13)
-root.insertinfo(14)
-root.insertinfo(15)
-root.insertinfo(9)
-root.insertinfo(8)
-root.insertinfo(7)
-root.insertinfo(6)
-root.insertinfo(5)
+        aux = self
+        while aux.esquerda is not None:
+            aux = aux.esquerda
+        
+        return aux.info
+    
+    def max(self):
+        if self.vazio():
+            return None
+
+        aux = self
+        while aux.direita:
+            aux = aux.direita
+        
+        return aux.info
+    
+    def bst(self,minv,maxv):
+        
+        if self.info <= minv or self.info >= maxv: # Se a raiz for menor que o minimo valor ou maior valor e invalido
+            return False
+        
+        erdav = True
+        direv = True
+        if self.esquerda:
+            erdav = self.esquerda.bst(minv,self.info)
+        
+        if self.direita:
+            direv = self.direita.bst(self.info,maxv)
+
+        return erdav and direv
+
+    def validbst(self):
+        if self.vazio():
+            return True
+        return self.bst(float('-inf'),float('inf'))
+
+    def print_tree(self, level=0, prefix="Raiz: "):
+        """Método auxiliar para visualizar a árvore"""
+        print(" " * (level * 4) + prefix + str(self.info))
+        if self.esquerda:
+            self.esquerda.print_tree(level + 1, "L--> ")
+        if self.direita:
+            self.direita.print_tree(level + 1, "R--> ")
+
+root = Arvore(None)
+val = [50,30,70,20,40,60,80]
+for i in range(len(val)):
+    root.insertinfo(val[i])
+    
+root.print_tree()
+
+if root.validbst:
+    print("A arvore e uma BST Valida")
+else:
+    print("A Arvore nao e uma BST Valida")
+
+print(f'Menor Valor da BST = {root.max()}')
+print(f'Maior Valor da BST = {root.min()}')
